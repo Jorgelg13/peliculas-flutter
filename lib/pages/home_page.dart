@@ -8,6 +8,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    pelisProvider.getPopulares();
+    
     return Scaffold(
         backgroundColor: Colors.white54,
         appBar: AppBar(
@@ -66,8 +69,8 @@ class HomePage extends StatelessWidget {
           SizedBox(
             height: 5.0,
           ),
-          FutureBuilder(
-            future: pelisProvider.getPopulares(),
+          StreamBuilder(
+            stream: pelisProvider.popularesStream,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return MovieHorizontal(
