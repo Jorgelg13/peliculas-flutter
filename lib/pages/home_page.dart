@@ -4,13 +4,14 @@ import 'package:peliculas/providers/peliculas.dart';
 import 'package:peliculas/pages/widgets/movie_horizontal.dart';
 
 class HomePage extends StatelessWidget {
+
   final pelisProvider = new PeliculasProvider();
 
   @override
   Widget build(BuildContext context) {
 
     pelisProvider.getPopulares();
-    
+
     return Scaffold(
         backgroundColor: Colors.white54,
         appBar: AppBar(
@@ -75,6 +76,7 @@ class HomePage extends StatelessWidget {
               if (snapshot.hasData) {
                 return MovieHorizontal(
                   peliculas: snapshot.data,
+                  siguientePagina: pelisProvider.getPopulares,
                 );
               } else {
                 return Center(child: CircularProgressIndicator());
